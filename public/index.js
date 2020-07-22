@@ -5,7 +5,7 @@ function setup() {
   canvas.parent("canvas");
   background(245);
 
-  socket = io.connect("http://localhost:5000");
+  socket = io.connect("https://ahead-vivacious-carbon.glitch.me/");
 
   socket.on("mouse", (data) => {
     fill(255, 120, 120);
