@@ -1,23 +1,35 @@
 let socket;
 
 function setup() {
-  createCanvas(windowWidth, windowHeight - 4);
-  background(235);
+  let canvas = createCanvas(windowWidth - 75, windowHeight - 5);
+  canvas.parent("canvas");
+  background(245);
 
-  socket = io.connect("http://localhost:3000");
+  socket = io.connect("http://localhost:5000");
 
   socket.on("mouse", (data) => {
-    fill(0, 0, 255);
+    fill(255, 120, 120);
     noStroke();
-    ellipse(data.x, data.y, 20, 20);
+    ellipse(data.x, data.y, 10, 10);
+  });
+
+  socket.on("clear", () => {
+    clear();
   });
 }
 
 function mouseDragged() {
-  fill(31);
   noStroke();
-  ellipse(mouseX, mouseY, 20, 20);
+  stroke(360, 40, 100);
+  fill(360, 100, 100);
+  strokeWeight(20);
+  line(mouseX, mouseY, pmouseX, pmouseY);
   sendmouse(mouseX, mouseY);
+}
+
+function clearCanvas() {
+  clear();
+  socket.emit("clear");
 }
 
 function sendmouse(x, y) {
@@ -28,5 +40,3 @@ function sendmouse(x, y) {
 
   socket.emit("mouse", data);
 }
-
-document.getElementById("body");

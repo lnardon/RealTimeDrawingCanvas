@@ -11,6 +11,10 @@ io.sockets.on("connection", (socket) => {
     socket.broadcast.emit("mouse", data);
   });
 
+  socket.on("clear", () => {
+    socket.broadcast.emit("clear");
+  });
+
   socket.on("disconnect", () => {
     console.log("Client has disconnected");
   });
