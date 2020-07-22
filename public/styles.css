@@ -28,6 +28,8 @@ body {
   justify-content: center;
   cursor: pointer;
   margin-top: 1rem;
+  background-color: rgb(245, 245, 245);
+  width: 100%;
 }
 
 .buttonIcon {
@@ -38,7 +40,7 @@ body {
 
 .clearText {
   background-color: transparent;
-  color: #f1f1f1;
+  color: #232323;
   text-align: center;
   font-size: 14px;
 }

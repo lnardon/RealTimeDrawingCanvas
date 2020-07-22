@@ -1,4 +1,5 @@
 let socket;
+let tool = "brush";
 
 function setup() {
   let canvas = createCanvas(windowWidth - 75, windowHeight - 5);
@@ -8,9 +9,15 @@ function setup() {
   socket = io.connect("http://localhost:5000");
 
   socket.on("mouse", (data) => {
-    stroke(80, 180, 10);
-    strokeWeight(10);
-    line(data.x, data.y, data.x2, data.y2);
+    if (data.tool === "brush") {
+      stroke(80, 180, 10);
+      strokeWeight(10);
+      line(data.x, data.y, data.x2, data.y2);
+    } else {
+      stroke(245);
+      strokeWeight(10);
+      line(data.x, data.y, data.x2, data.y2);
+    }
   });
 
   socket.on("clear", () => {
@@ -19,12 +26,23 @@ function setup() {
 }
 
 function mouseDragged() {
-  noStroke();
-  stroke(360, 40, 100);
-  fill(360, 100, 100);
-  strokeWeight(10);
-  line(mouseX, mouseY, pmouseX, pmouseY);
-  sendmouse(mouseX, mouseY, pmouseX, pmouseY);
+  if (tool === "brush") {
+    noStroke();
+    stroke(360, 40, 100);
+    fill(360, 100, 100);
+    strokeWeight(10);
+    line(mouseX, mouseY, pmouseX, pmouseY);
+    sendmouse("brush", mouseX, mouseY, pmouseX, pmouseY);
+  } else {
+    stroke(245);
+    strokeWeight(10);
+    line(mouseX, mouseY, pmouseX, pmouseY);
+    sendmouse("eraser", mouseX, mouseY, pmouseX, pmouseY);
+  }
+}
+
+function setToolType(type) {
+  tool = type;
 }
 
 function clearCanvas() {
@@ -32,8 +50,9 @@ function clearCanvas() {
   socket.emit("clear");
 }
 
-function sendmouse(x, y, x2, y2) {
+function sendmouse(tool, x, y, x2, y2) {
   let data = {
+    tool: tool,
     x: x,
     y: y,
     x2: x2,
