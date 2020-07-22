@@ -5,12 +5,12 @@ function setup() {
   canvas.parent("canvas");
   background(245);
 
-  socket = io.connect("https://ahead-vivacious-carbon.glitch.me/");
+  socket = io.connect("http://localhost:5000");
 
   socket.on("mouse", (data) => {
-    fill(255, 120, 120);
-    noStroke();
-    ellipse(data.x, data.y, 10, 10);
+    stroke(80, 180, 10);
+    strokeWeight(10);
+    line(data.x, data.y, data.x2, data.y2);
   });
 
   socket.on("clear", () => {
@@ -22,9 +22,9 @@ function mouseDragged() {
   noStroke();
   stroke(360, 40, 100);
   fill(360, 100, 100);
-  strokeWeight(20);
+  strokeWeight(10);
   line(mouseX, mouseY, pmouseX, pmouseY);
-  sendmouse(mouseX, mouseY);
+  sendmouse(mouseX, mouseY, pmouseX, pmouseY);
 }
 
 function clearCanvas() {
@@ -32,10 +32,12 @@ function clearCanvas() {
   socket.emit("clear");
 }
 
-function sendmouse(x, y) {
+function sendmouse(x, y, x2, y2) {
   let data = {
     x: x,
     y: y,
+    x2: x2,
+    y2: y2,
   };
 
   socket.emit("mouse", data);
