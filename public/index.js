@@ -34,7 +34,7 @@ function mouseDragged() {
     line(mouseX, mouseY, pmouseX, pmouseY);
     sendmouse("brush", mouseX, mouseY, pmouseX, pmouseY);
   } else {
-    stroke(245);
+    stroke(245, 245, 245);
     strokeWeight(10);
     line(mouseX, mouseY, pmouseX, pmouseY);
     sendmouse("eraser", mouseX, mouseY, pmouseX, pmouseY);
