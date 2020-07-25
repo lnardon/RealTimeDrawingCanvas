@@ -1,5 +1,7 @@
 # Real Time Drawing Canvas
 
+I developed this application in order to learn a little bit about websockets and one of it's amazing applications. The basic concept was to create a drawable canvas that could be interacted with by people in real time.
+
 <p align="center">
   <img src="./public/demo.gif">
 </p>
