@@ -4,7 +4,7 @@ let tool = "brush";
 function setup() {
   let canvas = createCanvas(windowWidth - 75, windowHeight - 5);
   canvas.parent("canvas");
-  background(245);
+  background(255);
 
   socket = io.connect("http://localhost:5000");
 
@@ -34,7 +34,7 @@ function mouseDragged() {
     line(mouseX, mouseY, pmouseX, pmouseY);
     sendmouse("brush", mouseX, mouseY, pmouseX, pmouseY);
   } else {
-    stroke(245);
+    stroke(255);
     strokeWeight(10);
     line(mouseX, mouseY, pmouseX, pmouseY);
     sendmouse("eraser", mouseX, mouseY, pmouseX, pmouseY);
