@@ -14,7 +14,7 @@ function setup() {
       strokeWeight(10);
       line(data.x, data.y, data.x2, data.y2);
     } else {
-      stroke(245);
+      stroke(255);
       strokeWeight(10);
       line(data.x, data.y, data.x2, data.y2);
     }
