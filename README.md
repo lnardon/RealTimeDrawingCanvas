@@ -4,7 +4,7 @@
   <img src="./public/demo.gif">
 </p>
 
-## Try it out [here]("https://https://real-time-canvas.glitch.me/")
+## [Try it out here]("https://real-time-canvas.glitch.me/")
 
 ### Installation
 
